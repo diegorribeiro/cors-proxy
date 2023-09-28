@@ -24,7 +24,10 @@ app.all('*', function (req, res, next) {
             res.send(500, { error: 'There is no Target-Endpoint header in the request' });
             return;
         }
-        request({ url: targetURL + req.url, method: req.method, json: req.body, headers: {'Authorization': req.header('Authorization')} },
+        console.log(targetURL);
+        console.log(req.url);
+        
+        request({ url: targetURL + req.url, method: req.method, json: req.body, headers: {'x-api-key': req.header('x-api-key')} },
             function (error, response, body) {
                 if (error) {
                     console.error('error: ' + response.statusCode)
